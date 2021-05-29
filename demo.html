@@ -58,10 +58,21 @@
 	height: 375px;
 	background-color: #666;
 }
-#video {
-  border: 1px solid #999;
-  width: 98%;
-  max-width: 860px;
+video {
+  filter: drop-shadow(0 0 0.75rem rgb(145, 145, 145));
+  border-radius: 10px;
+  max-width: 80%;
+}
+#pip  {
+   position: absolute;
+   top: 35%;
+   left: 45%;
+   border-radius: 50%;
+    
+}
+#cameraDiv {
+    display: none;
+    border-radius: 10px;
 }
    </style>
    <link href="styles/style.css" rel="stylesheet">
@@ -74,24 +85,36 @@
     <div id="demo" style="padding-bottom:50px; ">
     </div>
 
-    <div class="row my-5" style="z-index: 111111;">
+    <div class="container-fluid">
+      <div class="row my-5 text-center" style="z-index: 111111;">
+ 
+        <div class="col-md-8">
+          <button class="btn btn-primary" id="connect">Connect Server</button>&nbsp;
+          <button class="btn btn-primary" id="start">Start Capture</button>&nbsp;
+          <button class="btn btn-primary" id="stop">Stop Capture</button></p>
+          <button class="btn btn-primary" id="streamCam">Start Webcam</button></p>
 
-      <div class="col-md-6">
-        <video class="mx-auto" autoplay="true" id="videoElement" style="border-radius: 10px;">
-
-        </video>
+          <video id="video" autoplay></video>
+      
+          
+          <pre id="log"></pre>
+        </div>
+        <div class="col-md-4">
+          <div class="cameraDiv my-3">
+            <video  autoplay="true" id="videoElement"  >
+  
+            </video>
+            <button class="btn btn-primary " id="pip"><i class="fas fa-compress-arrows-alt"></i></button>&nbsp;
+  
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-        <button id="start">Start Capture</button>&nbsp;<button id="stop">Stop Capture</button></p>
-        <video id="video" autoplay></video>
-    
-        <pre id="log"></pre>
+      
+      <div style="height: 500px;">
+  sadas
       </div>
     </div>
-    
-    <div style="height: 500px;">
-sadas
-    </div>
+   
    
 
     <div id="content">
@@ -126,23 +149,55 @@ sadas
   <script>
 //Webcam
 var video = document.querySelector("#videoElement");
+const button = document.querySelector('#pip');
+const cameraDiv = document.querySelector('#cameraDiv');
+const streamCam = document.getElementById("streamCam");
 
-if (navigator.mediaDevices.getUserMedia) {
+streamCam.addEventListener("click", function(evt) {
+ streamFaceCam();
+}, false);
+
+function streamFaceCam()
+{
+
+  if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ video: true })
     .then(function (stream) {
       video.srcObject = stream;
+             video.addEventListener('enterpictureinpicture', onEnterPip, false);
+             video.addEventListener("leavepictureinpicture", onExitPip, false);
+
     })
     .catch(function (err0r) {
       console.log("Something went wrong!");
     });
 }
+}
 
 
+button.onclick = function()   {
+  video.requestPictureInPicture();
+}
+
+function onExitPip() {
+  console.log("Picture-in-Picture mode deactivated!");
+  video.style.display = "block";
+  cameraDiv.style.display = "block";
+  button.style.display = "block";
+}
+function onEnterPip() {
+  console.log("Picture-in-Picture mode activated!");
+
+  video.style.display = "none";
+  cameraDiv.style.display = "none";
+  button.style.display = "none";
+}
 //ScreenStream
 const logElem = document.getElementById("log");
 const startElem = document.getElementById("start");
 const stopElem = document.getElementById("stop");
 const videoElem = document.getElementById("video");
+const connectElem = document.getElementById("connect");
 
 const gdmOptions = {
   video: {
@@ -162,7 +217,10 @@ stopElem.addEventListener("click", function(evt) {
   stopCapture();
 }, false);
 
-async function startCapture() {
+connectElem.addEventListener("click", function(evt) {
+  requestMedia();
+}, false);
+async function startCapture() { 
   logElem.innerHTML = "";
 
   try {
@@ -172,82 +230,62 @@ async function startCapture() {
     console.error("Error: " + err);
   }
 
-  var mediaRecorder;
+
+   
+}
+
+var mediaRecorder;
  var socket ;
  var state ="stop"; 
  var t;
-function connect_server()
-{
-
-
-  navigator.getUserMedia = (navigator.getUserMedia ||
-  navigator.mozGetUserMedia ||
-  navigator.msGetUserMedia ||
-  navigator.webkitGetUserMedia);
-  if(!navigator.getUserMedia){fail('No getUserMedia() available.');}
-  if(!MediaRecorder){fail('No MediaRecorder available.');}
-
-  socket = io.connect("rtmp://127.0.0.1:1935/", {secure: true});
-  //output_message.innerHTML=socket;
-  socket.on('connect_error', function(){ 
-
-  alert("Connection Failed on connect_error");
-  });
-  //({
-  // option 1
-  // ca: fs.readFileSync("https://localhost:443",'./abels-cert.pem'),
-  // option 2. WARNING: it leaves you vulnerable to MITM attacks!
-  // requestCert: false,
-  //  rejectUnauthorized: false
-  //});
-  //var socket = io.
-  //
-  socket.on('message',function(m){
-  console.log('recv server message',m);
-  show_output('SERVER:'+m);
-  });
-  socket.on('fatal',function(m){
-
-  show_output('ERROR: unexpected:'+m);
-  //alert('Error:'+m);
-  mediaRecorder.stop();
-  state="stop";
-  //button_start.disabled=true;
-  //button_server.disabled=false;
-  //document.getElementById('button_start').disabled=true;　
-  var oo=document.getElementById("checkbox_Reconection");
-  if(oo.checked) {
-  timedCount();
-  alert("server is reload!");
-  //如果該checkbox有勾選應作的動作...
+function requestMedia(){
+	var constraints = { video: {
+    cursor: "always"
+  },
+  audio: {
+    echoCancellation: true,
+    noiseSuppression: true,
+    sampleRate: 44100
   }
-  //should reload?
-  });
-  socket.on('ffmpeg_stderr',function(m){
+	};
+	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+		//video_show(stream);//only show locally, not remotely
+	  var url = "rtmp://127.0.0.1:1935";
+    socket = io.connect("rtmp://127.0.0.1:1935");
+    // //socket.on(url);
+    socket.emit('config_rtmpDestination',url);
+		socket.emit('start','start');
+		mediaRecorder = new MediaRecorder(stream);
+    if(stream)
+    console.log(stream);
 
-  show_output('FFMPEG:'+m);
-  });
-  socket.on('disconnect', function () {
-  show_output('ERROR: server disconnected!');
-  mediaRecorder.stop();
-  state="stop";
-  // button_start.disabled=true;
-  // button_server.disabled=false;
-  //	document.getElementById('button_start').disabled=true;　
-  var oo=document.getElementById("checkbox_Reconection");
-  if(oo.checked) {
-  timedCount();
+		mediaRecorder.start(0);
 
-  alert("server is reload!");
-  //如果該checkbox有勾選應作的動作...
-  }
-  })
-  state="ready";
-  // button_start.disabled=false;
-  // button_server.disabled=true;
-  alert("connect server successful");
-  }
-  connect_server();
+		mediaRecorder.onstop = function(e) {
+			stream.stop();
+				
+		}
+		//document.getElementById('button_start').disabled=false;　
+
+		mediaRecorder.ondataavailable = function(e) {
+		
+		  socket.emit("binarystream",e.data);
+		  state="start";
+		  //chunks.push(e.data);
+		}
+	}).catch(function(err) {
+		console.log('The following error occured: ' + err);
+		show_output('Local getUserMedia ERROR:'+err);
+		output_message.innerHTML="Local video source size is not soupport or No camera ?"+output_video.videoWidth+"x"+output_video.videoHeight;
+		 state="stop";
+		 button_start.disabled=true;
+		button_server.disabled=false;
+	});
+}
+
+function show_output(str){
+
+console.log(str)
 }
 
 function stopCapture(evt) {
@@ -276,13 +314,13 @@ function dumpOptionsInfo() {
  
     var audio = document.getElementById('music-player');
         
-        var source = document.getElementById('music-player-src');
+    var source = document.getElementById('music-player-src');
 
-        var title = document.getElementById('title');
+    var title = document.getElementById('title');
 
-        var artist = document.getElementById('artist');
+    var artist = document.getElementById('artist');
 
-        var artwork = document.getElementsByClassName('music-artwork');
+    var artwork = document.getElementsByClassName('music-artwork');
 
 
        
