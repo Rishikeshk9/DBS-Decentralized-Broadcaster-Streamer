@@ -25,7 +25,7 @@
 <script>
   var unlockProtocolConfig = {
       "locks": {
-        "0xdFFbCBe3FF7C8cEfd6E77FC981a489d116b56028": {
+        "0x1CdA8BA8A641F7208F2BAe16B4f919EbcDE4e5A8": {
           "network": 4
         }
       },
@@ -42,11 +42,12 @@
 <body class="text-center" >
 
   <h1>Unlock Demo</h1>
-<p class="unlock-content locked">Unlock Stream is currently locked 🔒 </p>
+<p class="unlock-content locked">Unlock Stream is currently locked 🔒 
+  <p class="unlock-content locked" onclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()"><button class="button btn btn-primary">
+  Unlock!
+  </button></p></p>
 <p class="unlock-content unlocked">Enjoy your Stream! 🎉</p>
-<p class="unlock-content locked" onclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()"><button class="button">
-Unlock!
-</button></p>
+
  
 <div class="unlocked unlock-content text-center">
 
