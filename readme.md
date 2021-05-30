@@ -11,3 +11,5 @@ It is a simple platform.
 To watch ongoing LiveStream :
 https://bafzbeic2l4q6n7ecxhbqg64hqpweo7h4bhczjkqgmfyaj4zmblpnvobfqe.textile.space/
 
+Video Demo URL : https://youtu.be/RGCnPxr1PNc
+
