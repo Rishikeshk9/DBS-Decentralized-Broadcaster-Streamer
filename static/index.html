@@ -16,15 +16,15 @@ MediaRecorder to RTMP Demo
 <input type="text" id="option_height" value="480"/>
 <br>
 <label for="socket.io_url" >Socket.io Destination:</label>
-<input type="text" id="socket.io_address" value="https://172.16.2.111"/>
+<input type="text" id="socket.io_address" value="https://localhost:8001/"/>
 <br>
 <label for="flv_url" >flv_soruce Destination:</label>
-<input type="text" id="flvsource" value="https://172.16.2.111:444/live/test0.flv"/>
+<input type="text" id="flvsource" value="https://localhost:444/live/test0.flv"/>
 
 
 <br>
 <label for="option_url" >RTMP Destination:</label>
-<input type="text" id="option_url" value="rtmp://localhost/"/>
+<input type="text" id="option_url" value="rtmp://rtmp.livepeer.com/live/d26c-7xzq-hwp6-ca9g"/>
 <input type="checkbox"  id="checkbox_Reconection" checked="true">Reconnection 
 <br>
 <button id="button_server">Connect_server</button>
@@ -60,7 +60,7 @@ var output_console=document.getElementById('output_console'),
 	button_start=document.getElementById('button_start'),
 	height=option_height.value,
 	width=option_width.value,
-	url=option_url.value='rtmp://'+location.host.split(':')[0]+':1935/';
+	url=option_url.value='rtmp://rtmp.livepeer.com/live/d26c-7xzq-hwp6-ca9g';
 
 option_height.onchange=option_height.onkeyup=function(){height=1*this.value;}
 option_width.onchange=option_width.onkeyup=function(){width=1*this.value;}
@@ -103,12 +103,12 @@ function video_show(stream){
 	output_message.innerHTML="Local video source size:"+output_video.videoWidth+"x"+output_video.videoHeight;
 }, false );
 }
+
 function show_output(str){
 
 	output_console.value+="\n"+str;
 	output_console.scrollTop = output_console.scrollHeight;
-}
-;
+};
 
 
 function timedCount()

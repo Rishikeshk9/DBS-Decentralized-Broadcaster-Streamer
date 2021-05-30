@@ -1,0 +1,49 @@
+curl -X POST \
+-H 'content-type: application/json' \
+-H 'authorization: Bearer ce5a0f30-fe3d-4906-8561-186bff57191b' \
+-d '{
+  "name": "test_stream",
+  "profiles": [
+    {
+      "name": "720p",
+      "bitrate": 2000000,
+      "fps": 30,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "name": "480p",
+      "bitrate": 1000000,
+      "fps": 30,
+      "width": 854,
+      "height": 480
+    },
+    {
+      "name": "360p",
+      "bitrate": 500000,
+      "fps": 30,
+      "width": 640,
+      "height": 360
+    }
+  ]
+}' https://livepeer.com/api/stream
+
+
+curl -H 'authorization: Bearer ce5a0f30-fe3d-4906-8561-186bff57191b' \
+"https://livepeer.com/api/stream/d26c1202-da3b-4b16-9171-5eaa2ac1e3e2"
+
+
+
+
+
+
+
+
+//////////////////////////////
+
+{"lastSeen":0,"isActive":false,"record":false,"suspended":false,"sourceSegments":0,"transcodedSegments":0,
+"sourceSegmentsDuration":0,"transcodedSegmentsDuration":0,"sourceBytes":0,"transcodedBytes":0,"name":"test_stream",
+"profiles":[{"name":"720p","bitrate":2000000,"fps":30,"width":1280,"height":720},{"name":"480p","bitrate":1000000,
+"fps":30,"width":854,"height":480},{"name":"360p","bitrate":500000,"fps":30,"width":640,"height":360}],"kind":"stream",
+"userId":"1015caf5-ee55-42c1-9d87-25e71ab5589f","renditions":{},"id":"d26c1202-da3b-4b16-9171-5eaa2ac1e3e2","createdAt":1622300917591,
+"streamKey":"d26c-7xzq-hwp6-ca9g","playbackId":"d26cvvodjeqm7bre","createdByTokenName":"or1on","createdByTokenId":"ce5a0f30-fe3d-4906-8561-186bff57191b"}

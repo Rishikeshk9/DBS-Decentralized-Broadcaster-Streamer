@@ -1,0 +1,237 @@
+
+@font-face {
+    font-family: "evil";
+    src: url("../fonts/Evil\ Empire.otf");
+  }
+  
+  *{
+    border:0px;
+    outline: none;
+  }
+  
+  @font-face {
+    font-family: "halaney";
+    src: url("../fonts/Halaney-Demo.otf");
+  }
+  @font-face {
+    font-family: "gont";
+    src: url("../fonts/Gontserrat-Regular.ttf");
+  }
+  
+  .evil{
+    font-family: "evil";
+  }
+  .gont{
+    font-family: "gont";
+  }
+  .halaney{
+    font-family: "halaney";
+  }
+  h3{
+    font-family: "evil";
+    color: white;
+  }
+  
+  .overlaytxt {
+    font-family: "evil";
+  }
+  
+  h1{
+    font-family: "evil";
+     font-size: 4rem;
+     color: #16E9E5;
+   }
+  .music-artwork:hover h1{
+    filter: drop-shadow(0 0 0.9rem #16E9E5)!important; 
+    -webkit-text-stroke: 1px #16E9E5; color: #FFF;
+    transition: all 1s ease-out;
+  } 
+  
+  .card-title{
+    font-family: "gont";
+    color: white;
+  }
+  .stay-tuned{
+    background-image: linear-gradient(to right, #802392 , #ea8ffc);
+    font-size: 22px;
+  }
+  .container {
+      height: 100vh;
+      position: relative; 
+    }
+    
+  .vertical-center { 
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    }
+  
+  .music-artwork-sub,.music-artwork{
+    
+    filter: drop-shadow(0 0.15rem 0.1rem rgba(102, 102, 102, 0.1));
+    transition: filter 0.5s;
+  }
+  .music-artwork:hover,
+  .music-artwork-sub:hover{
+    
+    filter: drop-shadow(0 0.45rem 0.5rem rgba(102, 102, 102, 0.5));
+   
+    border: 2px solid #16E9E5;
+  }
+  .shadow-img{
+    filter: drop-shadow(0 0 0.35rem #fff)!important;
+  
+  }
+  .fixed-bottom /* position fixed Bottom */{position:fixed;bottom:0px;top:auto;}
+   
+  body {  background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  /* Add the blur effect */
+  
+    background-repeat: no-repeat;  
+  transition: all 0.5s;
+  } 
+  
+  #subscribe{ 
+    background-image: linear-gradient(to left, #FFF , #FFF);
+    color: #000; 
+    transition: all 0.5s ;
+  
+  }
+  
+  #subscribe:hover{ 
+    background-color: #16E9E5;
+    animation-name: example;
+    animation-duration: 1s;
+    color: #16E9E5; 
+  }   
+   
+  
+  @keyframes example {
+    0%   {background-color: #0093E9;}
+    25%  {background-color: #80D0C7;}
+    50%  {background-color: #5ee6e8;}
+    100% {background-color: #16E9E5;}
+  }
+  
+  
+  
+  @-webkit-keyframes rotating {
+    from{
+    -webkit-transform: rotate(0deg);
+    }
+    to{
+    -webkit-transform: rotate(360deg);
+    }
+  }
+  
+  .rotating {
+    -webkit-animation: rotating 6s linear infinite;
+  }
+  
+  .text-dbeats {
+    color: #000; 
+  
+  }
+  
+  
+  .text-dbeats:hover{
+    color: #16E9E5; 
+  
+  }
+  
+  
+  #thefile {
+         
+    top: 100px;
+    left: 10px; 
+    z-index: 100;
+  }
+
+  #canvas {
+    position: fixed; 
+  bottom:80px;
+  width:100%; 
+  margin-left: 25%;
+    left: 0; 
+    width: 100%;
+    height: 20%;
+    z-index: 100;
+    
+  }
+
+  audio {
+    position: fixed;
+    left: 50%;
+    bottom: 15px;
+    transform: translate(-50%);
+    width: calc(50% - 20px);
+    z-index: 101;
+  } 
+  #videoElement {
+width: 500px;
+height: 375px; 
+}
+video {
+filter: drop-shadow(0 0 0.75rem rgb(0, 0, 0));
+border-radius: 10px;
+max-width: 90%;
+}
+#pip  {
+position: absolute;
+top: 35%;
+left: 45%;
+border-radius: 50%;
+
+}
+#cameraDiv {
+display: none;
+border-radius: 10px;
+}
+.internal-content{
+  margin-left: 25%;
+}
+.bottom-panel{
+  background-color: #34373c;
+  position: fixed;
+     
+    bottom: 0px;
+    width: 100%; 
+    z-index: 101;
+}
+.side-panel{
+  background-color: #2b2e31;
+  position: fixed;
+    height: 100%; 
+    bottom: 0px;
+    min-width: 25%; 
+    max-width: 25%;
+    z-index: 101;
+}
+.live-tag{
+  background-color: red;
+  color: #fff;
+  position: fixed;
+  top: 60px;
+  left: 40px;
+  border-radius: 5px;
+  z-index: 101;
+}
+
+.unlock-content {
+  display: none;
+}
+
+.unlock-content .locked {
+  display: none;  
+}
+
+.unlock-content .unlocked {
+  display: none;
+  
+}
+  

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.1.0/shaka-player.compiled.js"></script>
+<!-- or, for UI builds: -->
+<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.1.0/shaka-player.ui.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.1.0/controls.css"/>
+<link rel="stylesheet" href="styles/style.css"/>
+
+<script src="scripts/unlock.js"></script>
+<script>
+  (function(d, s) {
+    var js = d.createElement(s),
+      sc = d.getElementsByTagName(s)[0];
+    js.src = "https://paywall.unlock-protocol.com/static/unlock.latest.min.js";
+    sc.parentNode.insertBefore(js, sc);
+  }(document, "script"));
+</script>
+
+<script>
+  var unlockProtocolConfig = {
+      "locks": {
+        "0xdFFbCBe3FF7C8cEfd6E77FC981a489d116b56028": {
+          "network": 4
+        }
+      },
+      "icon": "https://unlock-protocol.com/static/images/svg/unlock-word-mark.svg",
+      "callToAction": {
+        "default": "Please unlock this Stream!"
+      }
+	}
+</script>
+
+
+
+</head>
+<body >
+
+  <h1>Unlock Demo</h1>
+<p class="unlock-content locked">Unlock Demo is currently locked 🔒 </p>
+<p class="unlock-content unlocked">Enjoy your Stream! 🎉</p>
+<p class="unlock-content locked" onclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()"><button class="button">
+Unlock!
+</button></p>
+ 
+<div class="unlocked text-center">
+
+  <video id="my-player"
+  width="640"
+  poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+  controls autoplay></video>
+</div>
+<script>
+  const videoEl = document.querySelector("#my-player");
+  const src = "https://cdn.livepeer.com/hls/d26cvvodjeqm7bre/index.m3u8";
+  if (videoEl.canPlayType("application/vnd.apple.mpegurl")) {
+    // Some browers (safari and ie edge) support HLS natively
+    videoEl.src = src;
+  } else if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(src);
+    hls.attachMedia(videoEl);
+  } else {
+    console.error("This is a legacy browser that doesn't support MSE");
+  }
+
+  
+</script>
+
+</body>
+</html>
