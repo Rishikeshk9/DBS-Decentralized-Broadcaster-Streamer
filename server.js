@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+const cors = require('cors');
+
 //var http = require('http').Server(app);
 
 
@@ -9,6 +11,9 @@ var spawn = require('child_process').spawn;
 var fs = require('fs');
 
 app.use(express.static('static'));
+
+app.use(cors());
+
 const server = require('https').createServer({
  key: fs.readFileSync('abels-key.pem'),
   cert: fs.readFileSync('abels-cert.pem')
