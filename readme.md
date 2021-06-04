@@ -8,6 +8,8 @@ We have implemented Unlock protocol such that users would need to pay a certain 
 They can use tracks from Audius to Livestream them.
 It is a simple platform.
 
+Our hack is in the category of "Open Hack"
+
 To watch ongoing LiveStream :
 https://bafzbeic2l4q6n7ecxhbqg64hqpweo7h4bhczjkqgmfyaj4zmblpnvobfqe.textile.space/
 
