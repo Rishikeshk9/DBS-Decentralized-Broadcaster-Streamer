@@ -46,7 +46,7 @@ function timedCount() {
 }
 
 function connect_server() {
-  socket = io.connect("https://localhost:8001", { secure: true });
+  socket = io.connect("https://localhost:8002", { secure: true });
   //output_message.innerHTML=socket;
   socket.on("connect_error", function () {
     output_message.innerHTML = "Connection Failed";

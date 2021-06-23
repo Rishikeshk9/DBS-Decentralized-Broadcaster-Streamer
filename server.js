@@ -139,8 +139,8 @@ io.on('error',function(e){
  // console.log('http and websocket listening on *:8888');
 //});
 
-server.listen(8001, function(){
-  console.log('https and websocket listening on *:8001');
+server.listen(8002, function(){
+  console.log('https and websocket listening on *:8002');
 });
 
 process.on('uncaughtException', function(err) {
