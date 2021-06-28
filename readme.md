@@ -15,3 +15,16 @@ https://bafzbeic2l4q6n7ecxhbqg64hqpweo7h4bhczjkqgmfyaj4zmblpnvobfqe.textile.spac
 
 Video Demo URL : https://youtu.be/RGCnPxr1PNc
 
+WSL/Linux:
+
+$```node server.js```
+
+
+URL :
+
+```localhost:port/demo.html```
+
+
+Watch Stream on :
+
+```localhost:port/stream.html```
